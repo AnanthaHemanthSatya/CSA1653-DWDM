@@ -1,0 +1,268 @@
+
+1.Covariance and correlation 
+Children of three ages are asked to indicate their preference for three photographs of adults. Do the data suggest that there is a significant relationship between age and photograph preference? What is wrong with this study?
+
+                                                                        Photograph:
+                         Age of child               A                      B                      C
+         				   5-6 years:      18                     22                     20
+
+                                    7-8 years:         2                    28                     40
+
+                                    9-10 years:     20                     10                     40
+
+1.	Use cov() to calculate the sample covariance between B  and  C.
+2.	Use another call to cov() to calculate the sample covariance matrix for the preferences.
+3.	Use cor() to calculate the sample correlation between B and C.
+4.	Use another call to cor() to calculate the sample correlation matrix for the preferences.
+# Creating a matrix with the provided preference data
+preferences <- matrix(c(22, 28, 10, 20, 40, 40), ncol = 3, byrow = TRUE)
+rownames(preferences) <- c("5-6 years", "7-8 years", "9-10 years")
+colnames(preferences) <- c("A", "B", "C")
+# Calculate the sample covariance between B and C
+cov_bc <- cov(preferences[, "B"], preferences[, "C"])
+print("Sample Covariance between B and C:")
+print(cov_bc)
+# Calculate the sample covariance matrix for the preferences
+cov_matrix <- cov(preferences)
+print("Sample Covariance Matrix for Preferences:")
+print(cov_matrix)
+# Calculate the sample correlation between B and C
+cor_bc <- cor(preferences[, "B"], preferences[, "C"])
+print("Sample Correlation between B and C:")
+print(cor_bc)
+
+# Calculate the sample correlation matrix for the preferences
+cor_matrix <- cor(preferences)
+print("Sample Correlation Matrix for Preferences:")
+print(cor_matrix)
+18, 18, 18, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 25, 25, 25, 25, 25, 28, 28, 30, 
+30, 30. 
+(i) Partition the dataset using an equal-frequency partitioning method with bin equal to 3 (ii) apply data smoothing using bin means and bin boundary.
+(iii) Plot Histogram for the above frequency division 
+2.Imagine that you have selected data from the All Electronics data warehouse for analysis. The data set will be huge! The following data are a list of All Electronics prices for commonly sold items (rounded to the nearest dollar). The numbers have been sorted: 1, 1, 5, 5, 5, 5, 5, 8, 8, 10, 10, 10, 10, 12, 14, 14, 14, 15, 15, 15, 15, 15, 15, 18, 18, 18, 18, 18, 
+
+
+
+
+
+
+3.Two Maths teachers are comparing how their Year 9 classes performed in the end of year exams. Their results are as follows:
+Class A: 76, 35, 47, 64, 95, 66, 89, 36, 84, 76, 35,47,64,95,66,89,36,84 
+Class B: 51, 56, 84, 60, 59, 70, 63, 66, 50, 51,56,84,60,59,70,63,66,50 
+(i) Find which class had scored higher mean, median and range.
+(ii) Plot above in boxplot and give the inferences 
+Class B: 51, 56, 84, 60, 59, 70, 63, 66, 5051,56,84,60,59,70,63,66,50 
+
+
+
+
+
+# Data for Class A and Class B
+classA <- c(76, 35, 47, 64, 95, 66, 89, 36, 84)
+classB <- c(51, 56, 84, 60, 59, 70, 63, 66, 50)
+
+# Calculate mean, median, and range for Class A
+mean_A <- mean(classA)
+median_A <- median(classA)
+range_A <- max(classA) - min(classA)
+
+# Calculate mean, median, and range for Class B
+mean_B <- mean(classB)
+median_B <- median(classB)
+range_B <- max(classB) - min(classB)
+
+# Compare means
+if (mean_A > mean_B) {
+  mean_higher <- "Class A"
+} else if (mean_A < mean_B) {
+  mean_higher <- "Class B"
+} else {
+  mean_higher <- "Both classes have the same mean"
+}
+
+# Compare medians
+if (median_A > median_B) {
+  median_higher <- "Class A"
+} else if (median_A < median_B) {
+  median_higher <- "Class B"
+} else {
+  median_higher <- "Both classes have the same median"
+}
+
+# Compare ranges
+if (range_A > range_B) {
+  range_higher <- "Class A"
+} else if (range_A < range_B) {
+  range_higher <- "Class B"
+} else {
+  range_higher <- "Both classes have the same range"
+}
+
+# Print results
+cat("Mean: Class", mean_higher, "had a higher mean.\n")
+cat("Median: Class", median_higher, "had a higher median.\n")
+cat("Range: Class", range_higher, "had a higher range.\n")
+# Combine data for both classes
+combined_data <- data.frame(Class = c(rep("A", length(classA)), rep("B", length(classB))),
+                             Score = c(classA, classB))
+
+# Create a boxplot
+boxplot(Score ~ Class, data = combined_data,
+        main = "Boxplot of Exam Scores by Class",
+        xlab = "Class", ylab = "Scores")
+
+# Provide inferences
+cat("\nInferences based on the boxplot:\n")
+cat("- Class A has a wider range of scores compared to Class B.\n")
+cat("- Class A's distribution appears to be skewed towards higher scores, while Class B's distribution is more symmetric.\n")
+cat("- Class A has a higher median and a more spread-out interquartile range compared to Class B.\n")
+
+
+
+4.Let us consider one example to make the calculation method clear. Assume that the minimum and maximum values for the feature F are $50,000 and $100,000 correspondingly. It needs to range F from 0 to 1. In accordance with min-max normalization, v = $80,
+b) Use the two methods below to normalize the following group of data: 200, 300, 400, 600, 1000
+ (a) min-max normalization by setting min = 0 and max = 1
+
+
+ (b) z-score normalization
+
+data <- c(200, 300, 400, 600, 1000)
+v <- 80
+min_value <- 50000
+max_value <- 100000
+# Min-Max Normalization formula: (x - min) / (max - min)
+min_max_normalized_a <- (data - min(data)) / (max(data) - min(data))
+
+cat("Min-Max Normalization (Method A):\n")
+print(min_max_normalized_a)
+# Z-Score Normalization formula: (x - mean) / standard deviation
+z_score_normalized <- (data - mean(data)) / sd(data)
+
+cat("\nZ-Score Normalization:\n")
+print(z_score_normalized)
+
+
+
+
+
+5.	Make a histogram for the “AirPassengers “dataset, start at 100 on the x-axis, and from values 200 to 700, make the bins 150 wide
+
+
+# Load the necessary library
+library(datasets)
+
+# Load the AirPassengers dataset
+data("AirPassengers")
+
+# Set up the histogram parameters
+start_value <- 100
+end_value <- 700
+bin_width <- 150
+
+# Create the histogram
+hist(AirPassengers, breaks = seq(start_value, end_value, by = bin_width),
+     xlab = "Passenger Count", ylab = "Frequency",
+     main = "Histogram of AirPassengers",
+     col = "skyblue", border = "black")
+
+
+6.	Obtain Multiple Lines in Line Chart using a single Plot Function in R.Use attributes“mpg”and“qsec”of   the dataset “mtcars”
+
+# Load the necessary dataset
+data("mtcars")
+# Create a line chart with the first line (mpg)
+plot(mtcars$qsec, mtcars$mpg, type = "l", col = "blue", xlab = "qsec", ylab = "mpg", main = "Line Chart with Multiple Lines")
+# Add the second line (qsec) using the lines() function
+lines(mtcars$qsec, mtcars$qsec, col = "red")
+
+7.	Download the Dataset "water" From R dataset Link.Find out whether there is a linear relation between attributes"mortality" and"hardness" by plot function.Fit the Data into the Linear Regression model.Predict the mortality for the hardness=88.
+
+# Load the dataset
+water_data <- read.csv("water.csv")
+
+# Display the structure of the dataset
+str(water_data)
+
+# Create a scatter plot
+plot(water_data$hardness, water_data$mortality,
+     xlab = "Hardness", ylab = "Mortality",
+     main = "Scatter Plot of Mortality vs. Hardness")
+
+# Fit a linear regression model
+linear_model <- lm(mortality ~ hardness, data = water_data)
+
+# Display the model summary
+summary(linear_model)
+# Predict mortality for hardness = 88
+new_data <- data.frame(hardness = 88)
+predicted_mortality <- predict(linear_model, newdata = new_data)
+cat("Predicted Mortality for Hardness = 88:", predicted_mortality)
+
+
+
+8.	Create a Boxplot graph for the relation between "mpg"(miles per galloon) and "cyl"(number of Cylinders) for the dataset "mtcars" available in R Environment.
+
+# Load the necessary dataset
+data("mtcars")
+
+# Create a boxplot graph
+boxplot(mpg ~ cyl, data = mtcars,
+        xlab = "Number of Cylinders", ylab = "Miles per Gallon",
+        main = "Boxplot of MPG by Number of Cylinders",
+        col = "skyblue", border = "black")
+
+
+
+
+
+
+   9. Assume the Tennis coach wants to determine if any of his team players are scoring   
+      outliers. To visualize the distribution of points scored by his players, then how can he    
+      decide to develop the box plot? Give suitable example using Boxplot visualization   
+      technique.
+
+
+# Example dataset of points scored by tennis players
+points_scored <- c(10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 100, 120, 150)
+
+# Create a boxplot to visualize points scored
+boxplot(points_scored,
+        main = "Boxplot of Points Scored by Tennis Players",
+        ylab = "Points Scored")
+
+# Add a title and labels
+
+10. Implement using R language in which age group of people are affected byblood pressure based on the diabetes dataset show it using scatterplot and bar chart (that is BloodPressure vs Age using dataset “diabetes.csv”)
+
+# Load the necessary library
+library(ggplot2)
+
+# Load the dataset
+diabetes_data <- read.csv("diabetes.csv")
+
+# Display the structure of the dataset
+str(diabetes_data)
+# Create a scatterplot
+scatter_plot <- ggplot(data = diabetes_data, aes(x = Age, y = BloodPressure)) +
+  geom_point() +
+  labs(title = "Scatterplot of BloodPressure vs Age",
+       x = "Age", y = "BloodPressure")
+print(scatter_plot)
+# Create age groups
+age_group_data <- diabetes_data %>%
+  mutate(AgeGroup = cut(Age, breaks = c(20, 30, 40, 50, 60, 70, Inf),
+                         labels = c("20-29", "30-39", "40-49", "50-59", "60-69", "70+")))
+
+# Calculate average blood pressure by age group
+avg_bp_by_age_group <- age_group_data %>%
+  group_by(AgeGroup) %>%
+  summarise(AvgBloodPressure = mean(BloodPressure))
+
+# Create a bar chart
+bar_chart <- ggplot(data = avg_bp_by_age_group, aes(x = AgeGroup, y = AvgBloodPressure)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Average Blood Pressure by Age Group",
+       x = "Age Group", y = "Average Blood Pressure")
+print(bar_chart)
+
+
